@@ -1,6 +1,6 @@
 Hopper Push Messaging API ("the rabbit")
 ----------------------------------------
-Hopper uses AMQP messaging. We are using the open-source RabbitMQ implementation of AMQP internally and it has proven robust and scalable. You can find out more about RabbitMQ here (http://www.rabbitmq.com). For a good overview of various message queue implementations, you might be interested in this: http://wiki.secondlife.com/wiki/Message_Queue_Evaluation_Notes.
+Hopper uses AMQP messaging. We are using the open-source RabbitMQ implementation of AMQP internally and it has proven robust and scalable (not to mention conveniently named). You can find out more about RabbitMQ here (http://www.rabbitmq.com). For a good overview of various message queue implementations, you might be interested in this: http://wiki.secondlife.com/wiki/Message_Queue_Evaluation_Notes.
 
 For message serialization, we use ProtocolBuffers. You can find out more here: http://code.google.com/apis/protocolbuffers/. We have found it to be more flexible than basic Java object serialization, which is often problematic when transferring objects between different JRE implementations and versions. And it is much more IO-efficient than XML, which is important considering the message volume that we are dealing with. It also has the advantage of being language-agnostic.
 
