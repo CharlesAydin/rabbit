@@ -29,8 +29,8 @@ message Trip {
         optional string source_id = 10;
         optional int32 available_seats = 11 [default = -1];
 
-		optional string origin = 12;
-		optional string destination = 13;
+        optional string origin = 12;
+        optional string destination = 13;
     }
     repeated FlightFare fare     = 2;
 
