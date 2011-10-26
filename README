@@ -1,11 +1,10 @@
 Hopper Push Messaging API
 -------------------------
-
 Hopper uses AMQP messaging. We are using the open-source RabbitMQ implementation of AMQP internally and it has proven robust and scalable. You can find out more about RabbitMQ here (http://www.rabbitmq.com). For a good overview of various message queue implementations, you might be interested in this: http://wiki.secondlife.com/wiki/Message_Queue_Evaluation_Notes.
 
 For message serialization, we use ProtocolBuffers. You can find out more here: http://code.google.com/apis/protocolbuffers/. We have found it to be more flexible than basic Java object serialization, which is often problematic when transferring objects between different JRE implementations and versions. And it is much more IO-efficient than XML, which is important considering the message volume that we are dealing with. It also has the advantage of being language-agnostic.
 
-We have generated Java classes for the ProtocolBuffer messages. We have also created an example Java class that demonstrates how to create a message and send it to an AMQP exchange.  If you use a programming language other than Java, we can help you generate the corresponding binding classes (although it should be trivial).
+We have generated Java classes for the ProtocolBuffer messages (see the jar in dist/). We have also created an example Java class that demonstrates how to create a message and send it to an AMQP exchange (see the file in src/com/hopper/example/).  If you use a programming language other than Java, we can help you generate the corresponding binding classes (although it should be trivial).
 
 RabbitMQ Server
 -------------------------
@@ -15,7 +14,6 @@ It is recommended that you install the rabbitmq-management plugins to administer
 
 RabbitMQ Shovel
 ---------------
-
 For the production environment, we recommend the RabbitMQ Shovel plugin: 
 http://www.lshift.net/blog/2010/02/01/rabbitmq-shovel-message-relocation-equipment
 
@@ -24,8 +22,7 @@ publishing directly to a remote RabbitMQ server because publisher processes are 
 
 Please contact us (github@hopper.com) for a working shovel configuration file.
 
-Connecting for Real
+Connecting to Hopper
 -------------------
-
 Please contact us (github@hopper.com) to get details about connecting to the live Hopper queue.
 
