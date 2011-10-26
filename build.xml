@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="jar" name="hopper-push">
+<project basedir="." default="jar" name="hopper-rabbit">
     
     <property name="version" value="1.3"/>
     
@@ -50,7 +50,7 @@
     ================================= -->
     <target name="jar" depends="compile" description="--> create the jar file">
         <mkdir dir="${target.dir}"/>
-        <jar destfile="${target.dir}/hopper-push-${version}.jar">
+        <jar destfile="${target.dir}/hopper-rabbit-${version}.jar">
             <fileset dir="${build.dir}"/>
         </jar>
     </target>
