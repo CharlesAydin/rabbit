@@ -12,3 +12,20 @@ RabbitMQ Server
 If you're interested in installing a RabbitMQ Server, the instructions for installing one are here: http://www.rabbitmq.com/install.html. It is very simple and requires no schema configuration.  You can install it on a workstation or on a server -- simply change the hostname accordingly in the OTAExample class.
 
 It is recommended that you install the rabbitmq-management plugins to administer and monitor the RabbitMQ server: http://www.rabbitmq.com/plugins.html#rabbitmq-management.  Please see the RabbitMQ plugins page for information about installing plugins: http://www.rabbitmq.com/plugins.html
+
+RabbitMQ Shovel
+---------------
+
+For the production environment, we recommend the RabbitMQ Shovel plugin: 
+http://www.lshift.net/blog/2010/02/01/rabbitmq-shovel-message-relocation-equipment
+
+This plugin manages the transfer of messages from a local RabbitMQ server to a remote RabbitMQ server.  This is better than 
+publishing directly to a remote RabbitMQ server because publisher processes are shielded from the unreliability of the remote network connections.  In this setup, the local RabbitMQ server acts as a temporary buffer for messages being pushed to the remote server.
+
+Please contact us (github@hopper.com) for a working shovel configuration file.
+
+Connecting for Real
+-------------------
+
+Please contact us (github@hopper.com) to get details about connecting to the live Hopper queue.
+
