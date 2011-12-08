@@ -1,26 +1,12 @@
-Hopper Push Messaging API ("the rabbit")
+Hopper Push Messaging API ("The Rabbit")
 ----------------------------------------
-Hopper uses AMQP messaging. We are using the open-source RabbitMQ implementation of AMQP internally and it has proven robust and scalable (not to mention conveniently named). You can find out more about RabbitMQ here (http://www.rabbitmq.com). For a good overview of various message queue implementations, you might be interested in this: http://wiki.secondlife.com/wiki/Message_Queue_Evaluation_Notes.
 
-For message serialization, we use ProtocolBuffers. You can find out more here: http://code.google.com/apis/protocolbuffers/. We have found it to be more flexible than basic Java object serialization, which is often problematic when transferring objects between different JRE implementations and versions. And it is much more IO-efficient than XML, which is important considering the message volume that we are dealing with. It also has the advantage of being language-agnostic.
+The Hopper Rabbit is a push messaging API to allow travel product providers to stream product offers to the Hopper search index.
 
-We have generated Java classes for the ProtocolBuffer messages (see the jar in dist/). We have also created an example Java class that demonstrates how to create a message and send it to an AMQP exchange (see the file in src/com/hopper/example/).  If you use a programming language other than Java, we can help you generate the corresponding binding classes (although it should be trivial).
+All travel product offers available for booking online are indexed in real-time for integration with search results to users on the hopper.com site.
 
-RabbitMQ Server
--------------------------
-If you're interested in installing a RabbitMQ Server, the instructions for installing one are here: http://www.rabbitmq.com/install.html. It is very simple and requires no schema configuration.  You can install it on a workstation or on a server -- simply change the hostname accordingly in the OTAExample class.
+For details about the communication protocols and message schema, please read FlightMessage.pdf and HotelMessage.pdf.
 
-It is recommended that you install the rabbitmq-management plugins to administer and monitor the RabbitMQ server: http://www.rabbitmq.com/plugins.html#rabbitmq-management.  Please see the RabbitMQ plugins page for information about installing plugins: http://www.rabbitmq.com/plugins.html
+Product offers are stored for up to 3 days, after which offers are purged from the Hopper index.
 
-RabbitMQ Shovel
----------------
-For the production environment, we recommend the RabbitMQ Shovel plugin: http://www.lshift.net/blog/2010/02/01/rabbitmq-shovel-message-relocation-equipment
-
-This plugin manages the transfer of messages from a local RabbitMQ server to a remote RabbitMQ server.  This is better than publishing directly to a remote RabbitMQ server because publisher processes are shielded from the unreliability of the remote network connections.  In this setup, the local RabbitMQ server acts as a temporary buffer for messages being pushed to the remote server.
-
-Please contact us (github@hopper.com) for a working shovel configuration file.
-
-Connecting to Hopper
--------------------
-Please contact us (github@hopper.com) to get details about connecting to the live Hopper queue.
-
+For details about connecting to the live Hopper Rabbit listener service to include your company's product data on the hopper.com site, please contact Hopper by e-mail.
