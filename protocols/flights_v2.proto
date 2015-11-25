@@ -1,0 +1,50 @@
+message SearchResult {  // A search result
+  message Query {
+    required string origin = 1; // origin (may be a MAC)
+    required string destination = 2; // destination (may be a MAC)
+    required int32 pax_total = 3; // total number of passengers quoted
+    required int32 adult_pax_total = 4; // total number of adult passengers quoted (<= pax_total)
+    required string pos_country_code = 5; // point of sale ISO country code the query applies to
+  }
+  message Trip {  // A grouping of FlightFare that constructs a solution from A to B, using one or more fares
+    message FlightFare { // A grouping of segments sold together as a unit
+      message FlightSegment { // A flight from A to B
+        enum CabinClass {
+          Economy = 0;
+          PremiumEconomy = 1;
+          BusinessClass = 2;
+          PremiumBusinessClass = 3;
+          FirstClass = 4;
+          PremiumFirstClass = 5;
+        }
+        required string marketing_carrier_code = 1;
+        required string marketing_flight_number = 2;
+        required string operating_carrier_code = 3;
+        required string operating_flight_number = 4;
+        required string equipment_code = 5;
+        required string origin = 6;
+        required string destination = 7;
+        required fixed64 departure_date = 8; // UTC
+        required fixed64 arrival_date = 9; // UTC
+        required int32 stops = 10; // "hidden stops" e.g.: refueling. Change of flight numbers should create a segment.
+        required int32 slice_index = 11; // The 0-based index of the slice this segment belongs to. e.g.: for a one-way, this should always be 0, for RT, this is either 0 or 1, etc.
+        required string fare_code = 12; // Fare Basis code
+        required string booking_code = 13; // RBD
+        required CabinClass cabin_class = 14;
+        required int32 available_seats = 15;
+      }
+      required float base_amount = 1;
+      required float tax_amount = 2;
+      required string pax_type = 4;
+      required bool refundable = 5;
+      required string validating_carrier_code = 6;
+
+      repeated FlightSegment segments = 7;
+    }
+    repeated FlightFare fares = 1; // repeated to accommodate trips built from non-interline agreements
+  }
+  required Query query = 1;
+  required string currency_code = 2; // currency that applies to all monetary amounts in this message
+  required fixed64 timestamp = 3; // when the search result was produced
+  repeated Trip trips = 4;
+}
