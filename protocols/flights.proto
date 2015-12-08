@@ -3,38 +3,39 @@ package flights;
 option java_package = "com.hopper.models.flights";
 option java_outer_classname = "FlightProtocols";
 
+message TripBatch {
+	repeated Trip trips = 1;
+}
 message Trip {
-    message FlightFare {
-        message FlightSegment {
-            required string carrier_code = 1;
-            required string flight_number = 2;
-            required string origin = 3;
-            required string destination = 4;
-            required sfixed64 departure_date = 5;
-            required sfixed64 arrival_date = 6;
-            optional int32 stops = 7 [default = 0];
-            optional bool outgoing = 8;
-        }
-        repeated FlightSegment segment = 1;
-    
-        required string currency_code = 2;
-        required double base_amount = 3;
-        required double tax_amount = 4;
-        optional string fare_code = 5;
-        optional string cabin_class = 6;
-        optional string pax_type = 7;
-        optional bool refundable = 8 [default = false];
-        optional string fare_rules = 9;
-        
-        optional string source_id = 10;
-        optional int32 available_seats = 11 [default = -1];
+	message FlightFare {
+		message FlightSegment {
+			required string carrier_code = 1;
+			required string flight_number = 2;
+			required string origin = 3;
+			required string destination = 4;
+			required sfixed64 departure_date = 5;
+			required sfixed64 arrival_date = 6;
+			optional int32 stops = 7 [default = 0];
+			optional bool outgoing = 8;
+			optional string fare_code = 9;
+			optional string cabin_class = 10;
+			optional int32 available_seats = 11 [default = -1];
+		}
+		repeated FlightSegment segment = 1;
 
-        optional string origin = 12;
-        optional string destination = 13;
-    }
-    repeated FlightFare fare     = 2;
+		required string currency_code = 2;
+		required double base_amount = 3;
+		required double tax_amount = 4;
+		required string pax_type = 7;
+		optional bool refundable = 8 [default = false];
+		optional string source_id = 10;
+		optional string origin = 12;
+		optional string destination = 13;
+		optional double surcharge_amount = 14;
+	}
+	required FlightFare fare = 2;
 
-    optional string merchant_id  = 3;
-    required sfixed64 timestamp  = 4;
-    optional string booking_path = 5;
+	optional string merchant_id = 3;
+	required sfixed64 timestamp = 4;
+	optional string booking_path = 5;
 }
