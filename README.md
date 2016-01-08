@@ -41,7 +41,7 @@ Fieldname    | Type     | Required | Collection | Description
 fare         |FlightFare| **yes**  | no         | A priced unit of travel consisting of one or many segments
 merchant_id  |string    | **yes**  | no         | The unique ID of the data provider
 timestamp    |long      | **yes**  | no         | The date/time that this trip was shopped. A 64-bit long representing milliseconds since midnight, Jan 1, 1970 UTC
-booking_path |string    | no       | no         | An optional deep-link URL where this trip can be booked on the merchant site.
+booking_path |string    | no       | no         | *Deprecated*
 
 ##FlightFare
 The **FlightFare** class represents an ordered list of flight segments that are priced together as a bookable itinerary.
@@ -55,9 +55,11 @@ tax_amount   |double    | **yes**  | no         | The total taxes and fees amoun
 surcharge_amount|double | no       | no         | The total YQ and YR fees for this itinerary
 pax_type     |string    | **yes**  | no         | The passenger type code for which this fare applies (e.g. **ADT**, **CHD**, **INF**)
 refundable   |boolean   | no       | no         | An optional flag indicating that this fare is fully refundable. Defaults to false.
-source_id    |string    | no       | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the validating carrier
 origin       |string    | no       | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the departure airport of the first outbound segment of the itinerary.
 destination  |string    | no       | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the arrival airport of the last outbound segment of a one-way or return itinerary.
+validating\_carrier\_code| string | no | no     | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the validating carrier
+source_id    |string    | no       | no         | *Deprecated* 
+
 
 ##FlightSegment
 The **FlightSegment** class represents a single flight leg on a single aircraft between two airports.
@@ -65,6 +67,7 @@ The **FlightSegment** class represents a single flight leg on a single aircraft 
 Fieldname    | Type     | Required | Collection | Description
 :------------|:--------:|:--------:|:----------:|:----------
 carrier_code | string   | **yes**  | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the marketing carrier
+operating\_carrier\_code | string | no  | no    | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the operating carrier
 flight_number| string   | **yes**  | no         | [Flight number](https://en.wikipedia.org/wiki/Flight_number). Usually between 1 and 4 digits.
 origin       | string   | **yes**  | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the departure airport
 destination  | string   | **yes**  | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the arrival airport

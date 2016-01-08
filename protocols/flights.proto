@@ -20,6 +20,7 @@ message Trip {
 			optional string fare_code = 9;
 			optional string cabin_class = 10;
 			optional int32 available_seats = 11 [default = -1];
+			optional string operating_carrier_code = 12;
 		}
 		repeated FlightSegment segment = 1;
 
@@ -28,14 +29,15 @@ message Trip {
 		required double tax_amount = 4;
 		required string pax_type = 7;
 		optional bool refundable = 8 [default = false];
-		optional string source_id = 10;
+		optional string source_id = 10 [deprecated=true];;
 		optional string origin = 12;
 		optional string destination = 13;
 		optional double surcharge_amount = 14;
+		optional string validating_carrier_code = 15;
 	}
 	required FlightFare fare = 2;
 
 	optional string merchant_id = 3;
 	required sfixed64 timestamp = 4;
-	optional string booking_path = 5;
+	optional string booking_path = 5 [deprecated=true];;
 }
