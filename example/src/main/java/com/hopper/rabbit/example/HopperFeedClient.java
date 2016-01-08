@@ -54,7 +54,7 @@ public class HopperFeedClient {
         .setAvailableSeats(3)
         .build();
 
-    // Create a fare for the one-way segment(s)
+    // Create a fare for this roundtrip itinerary
     FlightFare flightFare = 
       FlightFare.newBuilder()
         .addSegment(outboundSegment)
@@ -89,12 +89,13 @@ public class HopperFeedClient {
    *  @throws IOException
    */
   public synchronized void send(TripBatch tripBatch) throws IOException {
-    URL url = new URL("https://api.hopper.com:9998/xxx");
+    URL url = new URL("https://api.hopper.com/xxx");
     HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
     urlc.setDoOutput(true);
     urlc.setRequestMethod("POST");
     urlc.setRequestProperty("X-Point-Of-Sale", "US");
     urlc.setRequestProperty("Content-Type", "application/x-protobuf");
+    urlc.setFixedLengthStreamingMode(tripBatch.getSerializedSize());
     tripBatch.writeTo(urlc.getOutputStream());
   }
 
@@ -104,5 +105,4 @@ public class HopperFeedClient {
     testClient.send(exampleTripBatch);
     System.exit(0);
   }
-    
 }
