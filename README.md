@@ -58,7 +58,8 @@ refundable   |boolean   | no       | no         | An optional flag indicating th
 origin       |string    | no       | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the departure airport of the first outbound segment of the itinerary.
 destination  |string    | no       | no         | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the arrival airport of the last outbound segment of a one-way or return itinerary.
 validating\_carrier\_code| string | no | no     | [IATA Code](http://www.iata.org/publications/Pages/code-search.aspx) of the validating carrier
-source_id    |string    | no       | no         | *Deprecated* 
+pos\_country\_code| string | no | no     | [ISO-3166-1 2-letter Country Code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the point of sale for this fare
+source_id    |string    | no       | no         | *Deprecated*
 
 
 ##FlightSegment
