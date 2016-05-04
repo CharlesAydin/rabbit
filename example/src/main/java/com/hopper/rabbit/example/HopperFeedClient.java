@@ -14,7 +14,7 @@
  *                            hhhhe
  *                             hhhho
  *                              ,hhhh
- *                               ~hhh 
+ *                               ~hhh
  */
 package com.hopper.rabbit.example;
 
@@ -31,7 +31,7 @@ import java.net.URL;
  * @author joost
  */
 public class HopperFeedClient {
- 
+
   /**
    * Example of how to build a FlightFare message object.
    * This example uses hard-coded dummy data.
@@ -39,7 +39,7 @@ public class HopperFeedClient {
    */
   private static TripBatch buildExampleTripBatch() {
     // First build all the segments for this trip
-    FlightSegment outboundSegment = 
+    FlightSegment outboundSegment =
       FlightSegment.newBuilder()
         .setCarrierCode("AC")
         .setFlightNumber("545")
@@ -53,7 +53,7 @@ public class HopperFeedClient {
         .setAvailableSeats(7)
         .build();
 
-    FlightSegment inboundSegment = 
+    FlightSegment inboundSegment =
       FlightSegment.newBuilder()
         .setCarrierCode("AC")
         .setFlightNumber("547")
@@ -68,7 +68,7 @@ public class HopperFeedClient {
         .build();
 
     // Create a fare for this roundtrip itinerary
-    FlightFare flightFare = 
+    FlightFare flightFare =
       FlightFare.newBuilder()
         .addSegment(outboundSegment)
         .addSegment(inboundSegment)
@@ -79,21 +79,22 @@ public class HopperFeedClient {
         .setPaxType("ADT")
         .setOrigin("ORD")
         .setDestination("YUL")
+        .setPosCountryCode("US")
         .build();
 
     // Create a trip for this fare
-    Trip trip = 
+    Trip trip =
       Trip.newBuilder()
         .setFare(flightFare)
         .setMerchantId("MMYT") // This trip is sold by the merchant identified by code ZZZZ
         .setTimestamp(System.currentTimeMillis()) // Offered Now
         .build();
-    
+
     TripBatch tripBatch =
       TripBatch.newBuilder()
         .addTrips(trip) // Normally you would add more than one trip to a batch
         .build();
-    
+
     return tripBatch;
   }
 
