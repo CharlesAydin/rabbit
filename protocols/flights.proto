@@ -34,6 +34,7 @@ message Trip {
 		optional string destination = 13;
 		optional double surcharge_amount = 14;
 		optional string validating_carrier_code = 15;
+		optional string pos_country_code = 16;
 	}
 	required FlightFare fare = 2;
 
